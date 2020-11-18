@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="container">
+    <section class="py-5 header text-center">
+        <div class="container py-5 text-white">
+            <header class="py-5">
+                <h1 class="display-4">Welcome to TutorMatch</h1>
+                <p class="font-italic mb-1">Where tutors meet students </p>
+            </header>
+        </div>
+    </section>
+    <header class="header sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
+            <div class="container"><a class="navbar-brand" href="#">
+                <strong class="h6 mb-0 font-weight-bold text-uppercase">TutorMatch</strong></a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active"><a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="row">
+        <img src="/static/img/back.jpg" style="position: absolute;
+        height: 700px;">
+        <div class="col-md-12 col-md-offset-4" style="margin-top: 108px;
+        background: white;">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Tutor Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in Items %}
+                    <tr>
+                        <th scope="row">{{item.id}}</th>
+                        <td>{{item.subject}}</td>
+                        <td>{{item.name}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br>
+        </div>
+    </div>
+</div>
+{% endblock %}

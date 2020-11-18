@@ -1,55 +1,66 @@
 
 export default {
-    login : user =>{
+    login: user => {
         console.log(user);
-        return fetch('/user/login',{
-            method : "post",
-            body : JSON.stringify(user),
-            headers : {
-                'Content-Type' : 'application/json'
+        return fetch('/login', {
+            method: "post",
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json'
             }
         }).then(res => {
-            if(res.status !== 401)
+            if (res.status !== 401)
                 return res.json().then(data => data);
             else
-                return { isAuthenticated : false, user : {username : "",role : ""}};
+                return { isAuthenticated: false, user: { username: "", role: "" } };
         })
     },
-    register : user =>{
+    register: user => {
         console.log(user);
-        return fetch('/register',{
-            method : "post",
-            body : JSON.stringify(user),
-            headers : {
-                'Content-Type' : 'application/json'
+        return fetch('/register', {
+            method: "post",
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json'
             }
         }).then(res => res.json())
-          .then(data => data);
+            .then(data => data);
     },
-    logout : ()=>{
+    logout: () => {
         return fetch('/user/logout')
-                .then(res => res.json())
-                .then(data => data);
+            .then(res => res.json())
+            .then(data => data);
     },
-    forgotPass : user =>{
+    forgotPass: user => {
         console.log(user);
-        return fetch('api/v1/users/forgotpassword',{
-            method : "post",
-            body : JSON.stringify(user),
-            headers : {
-                'Content-Type' : 'application/json'
+        return fetch('api/v1/users/forgotpassword', {
+            method: "post",
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json'
             }
         }).then(res => res.json())
-          .then(data => data);
+            .then(data => data);
     },
-    isAuthenticated : ()=>{
-        return fetch('/user/authenticated')
-                .then(res=>{
-                    if(res.status !== 401)
-                        return res.json().then(data => data);
-                    else
-                        return { isAuthenticated : false, user : {username : "",role : ""}};
-                });
+    isAuthenticated: () => {
+        return fetch('/authenticated')
+            .then(res => {
+                if (res.status !== 401)
+                    return res.json().then(data => data);
+                else
+                    return { isAuthenticated: false, user: { username: "", role: "" } };
+            });
+    },
+    getUserData: (username) => {
+        return fetch('/getUserData', {
+            method: "GET",
+            body: JSON.stringify(username),
+            // headers: {
+            //     'Content-Type': 'application/json'
+            // }
+        }).then(res => {
+               return res.json().then(data => data);
+            });
     }
 
 }

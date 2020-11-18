@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react'
+import AuthService from '../Services/AuthService';
 
-const Home = ()=>(
-    <div style={{padding:"200px",marginLeft:"400px"}}>
-    <h1>TUTOR MATCH</h1>
-    </div>
-)
 
-export default Home;
+
+
+export default class Home extends Component {
+    componentDidMount(){
+        AuthService.getUserData('viggu').then(data=>
+            console.log(data)
+            )
+    }
+    render() {
+        return (
+            <div style={{padding:"200px",marginLeft:"400px"}}>
+            <h1>TUTR MATCH</h1>
+            </div>
+        )
+    }
+}
+
